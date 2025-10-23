@@ -1,10 +1,14 @@
-import React from 'react'
+'use client'
+import React, { useState } from 'react'
 import Header from '@/components/Header'
 import { Filter } from 'lucide-react'
-import CustomButton from '@/components/ui/CustomAddButton'
+import CustomAddButton from '@/components/ui/CustomAddButton'
 import Card from '@/components/Card'
+import Link from 'next/link'
+import CustomCourseForm from '@/components/CustomCourseForm'
 
 const DashboardPage = () => {
+  const [isOpened, setIsOpened] = useState(false)
   return (
     <div className='flex flex-col'>
       <Header/>
@@ -16,17 +20,24 @@ const DashboardPage = () => {
             <span>Filtrar</span>
           </div>
         </div>
-        <CustomButton
-        text='Novo Curso'/>
+        <div onClick={() => setIsOpened(!isOpened)}>
+          <CustomAddButton
+          text='Novo Curso'
+          />
+        {isOpened && (
+          <CustomCourseForm
+          />
+        )}
+      </div>
       </section>
-      <section className='px-16 mt-4'>
+      <Link href={`/dashboard/title`} className='px-16 mt-4'>
         <Card
         title='Nome do curso'
         startDate='23/05/2025'
         endDate='31/12/2025'
         description='Este curso introdutório oferece uma base robusta na linguagem de programação Python, essencial para tecnologia e ciência de dados. Desenvolvido para iniciantes, o programa aborda desde a sintaxe fundamental, tipos de dados e estruturas de controle, até a criação de funções e manipulação básica de dados.'
         />
-      </section>
+      </Link>
     </div>
   )
 }
