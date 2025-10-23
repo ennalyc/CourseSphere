@@ -10,12 +10,14 @@ const CustomClassForm = () => {
         setIsOpened(false)
         setIsClicked(true)
     }
+    
     const [classStatus, setClassStatus] = useState('')
     const [classSelected, setClasSelected] = useState(false)
     const handleSelection = (c: string) => {
         setClassStatus(c)
         setClasSelected(true)
     }
+
     const classStat = [
         {id: 1, status: 'Rascunho'},
         {id: 2, status: 'Publicado'},

@@ -1,10 +1,15 @@
-import React from 'react'
+'use client'
+import React, { useState } from 'react'
 import Header from '@/components/Header'
 import { ChevronLeft, GraduationCap, Settings, Calendar, CalendarCheck, User } from 'lucide-react'
 import Link from 'next/link'
 import CourseClasses from '@/components/CourseClasses'
+import ConfigButton from '@/components/ConfigButton'
 
 const CoursePage = ({title}: {title: string}) => {
+    const [isCourseConfigOpen, setIsCourseConfigOpen] = useState(false)
+    const [isInstructorsConfigOpen, setIsInstructorsConfigOpen] = useState(false)
+
   return (
     <div>
         <Header/>
@@ -16,8 +21,15 @@ const CoursePage = ({title}: {title: string}) => {
             </Link>
             <div>
                 <div className='flex flex-row items-baseline gap-2'>
-                <h1 className='text-3xl font-bold mt-2 truncate'>Titulo do curso</h1>
-                <Settings className='text-neutral-500' size={16}/>
+                    <h1 className='text-3xl font-bold mt-2 truncate'>Titulo do curso</h1>
+                    <div className='flex flex-row gap-2 items-center'>
+                        <Settings size={16} className='text-neutral-500' onClick={() => setIsCourseConfigOpen(!isCourseConfigOpen)}/>
+                        {
+                            isCourseConfigOpen && (
+                            <ConfigButton/>
+                            )
+                        }
+                    </div>
                 </div>
                 <div className='flex flex-row text-neutral-400 gap-4 mt-1'>
                     <div className='flex flex-row gap-2  items-center'>
@@ -34,9 +46,16 @@ const CoursePage = ({title}: {title: string}) => {
         </section>
         <section className='px-16 flex flex-row mt-8 gap-2 justify-between'>
             <div>
-                <div className='flex flex-row gap-2 text-neutral-600 font-semibold'>
-                    <Settings/>
+                <div className='flex flex-row gap-2 text-neutral-600 font-semibold items-center'>
                     <span>Instrutores</span>
+                    <div className='flex flex-row gap-2 items-center'>
+                        <Settings size={16} className='text-neutral-500' onClick={() => setIsInstructorsConfigOpen(!isInstructorsConfigOpen)}/>
+                        {
+                           isInstructorsConfigOpen && (
+                            <ConfigButton/>
+                            )
+                        }
+                    </div>
                 </div>
                 <div className='border border-neutral-400 rounded-md w-56 min-h-16 mt-3 p-4'>
                     <div className='flex flex-row gap-3 text-neutral-400'>
