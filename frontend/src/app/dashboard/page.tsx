@@ -30,14 +30,14 @@ const DashboardPage = () => {
         )}
       </div>
       </section>
-      <Link href={`/dashboard/title`} className='px-16 mt-4'>
+      <div className='px-16 mt-4'>
         <Card
         title='Nome do curso'
         startDate='23/05/2025'
         endDate='31/12/2025'
         description='Este curso introdutório oferece uma base robusta na linguagem de programação Python, essencial para tecnologia e ciência de dados. Desenvolvido para iniciantes, o programa aborda desde a sintaxe fundamental, tipos de dados e estruturas de controle, até a criação de funções e manipulação básica de dados.'
         />
-      </Link>
+      </div>
     </div>
   )
 }
