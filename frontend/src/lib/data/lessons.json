@@ -1,0 +1,11 @@
+[
+  {
+    "id": "l1",
+    "title": "Introdução ao React",
+    "status": "published",
+    "publish_date": "2025-01-10",
+    "video_url": "https://youtube.com/example",
+    "course_id": "c1",
+    "creator_id": "u1"
+  }
+]

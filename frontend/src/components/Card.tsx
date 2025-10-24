@@ -1,11 +1,11 @@
 import React from 'react'
 import { Calendar, CalendarCheck } from 'lucide-react'
 import Link from 'next/link'
-// Mudar href
+
 const Card = ({title, startDate, endDate, description}: {title: string, startDate: string, endDate: string, description: string}) => {
   return (
       <article className='h-48 w-72 border border-neutral-400 rounded-md'>
-        <Link href={`/dashboard/title`} >
+        <Link href={`/dashboard/${title.replace(/\s/g, "").toLowerCase()}`} >
         <h3 className='px-4 h-10 w-full mt-3 text-lg font-semibold border-b border-neutral-400'>{title}</h3>
         <div className='mt-4 px-4 justify-between flex flex-row text-xs text-neutral-400'>
             <div className='flex flex-row gap-2'>

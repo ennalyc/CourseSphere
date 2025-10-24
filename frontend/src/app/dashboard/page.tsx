@@ -1,5 +1,5 @@
 'use client'
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import Header from '@/components/Header'
 import { Filter } from 'lucide-react'
 import CustomAddButton from '@/components/ui/CustomAddButton'
@@ -7,8 +7,45 @@ import Card from '@/components/Card'
 import Link from 'next/link'
 import CustomCourseForm from '@/components/CustomCourseForm'
 
+async function getCourses() {
+    const res = await fetch(`http://localhost:3000/api/courses`, {
+        cache: 'no-store' 
+    });
+
+    if (!res.ok) {
+        throw new Error('Falha ao buscar dados');
+    }
+    
+    const data = await res.json();
+    return data;
+}
+
 const DashboardPage = () => {
   const [isOpened, setIsOpened] = useState(false)
+  
+  const [data, setData] = useState<any[]>([]) 
+  const [loading, setLoading] = useState(true)
+
+  useEffect(() => {
+     const fetchData = async () => {
+          setLoading(true)
+          
+          try {
+            const coursesData = await getCourses()
+            setData(coursesData)
+          } catch (error) {
+            console.error(error)
+            setData([]) 
+          } finally {
+            setLoading(false); 
+          }
+      };
+
+      fetchData() 
+
+  }, []) 
+  
+
   return (
     <div className='flex flex-col'>
       <Header/>
@@ -30,14 +67,24 @@ const DashboardPage = () => {
         )}
       </div>
       </section>
-      <div className='px-16 mt-4'>
-        <Card
-        title='Nome do curso'
-        startDate='23/05/2025'
-        endDate='31/12/2025'
-        description='Este curso introdutório oferece uma base robusta na linguagem de programação Python, essencial para tecnologia e ciência de dados. Desenvolvido para iniciantes, o programa aborda desde a sintaxe fundamental, tipos de dados e estruturas de controle, até a criação de funções e manipulação básica de dados.'
-        />
-      </div>
+      <section className='px-16 mt-4'>
+        {data && data.length > 0 ? (
+                <ul className='flex flex-wrap gap-4 mt-4 items-center justify-start'>
+                    {data.map((course: any) => (
+                        <li key={course.id}>
+                          <Card
+                          title={course.name}
+                          startDate={course.start_date}
+                          endDate={course.end_date}
+                          description={course.description}
+                          />
+                        </li>
+                    ))}
+                </ul>
+            ) : (
+                <p className='text-neutral-400 text-xl mt-8 flex justify-center'>Nenhum curso disponível.</p>
+            )}
+      </section>
     </div>
   )
 }

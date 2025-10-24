@@ -1,0 +1,12 @@
+[
+  {
+    "id": "c1",
+    "name": "Curso React",
+    "description": "Aprenda React, a biblioteca JavaScript mais popular para construir interfaces de usuário (UIs) rápidas, interativas e escaláveis. Domine a criação de Single Page Applications (SPAs) e torne-se um desenvolvedor front-end requisitado pelo mercado.",
+    "start_date": "06/31/2020",
+    "end_date": "07/15/2020",
+    "creator_id": "u2",
+    "created_at": "06/20/2020",
+    "instructors": ["u1", "u2"]
+  }
+]

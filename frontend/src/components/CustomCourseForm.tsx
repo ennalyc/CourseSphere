@@ -2,7 +2,7 @@
 import React, { useState } from 'react'
 import CustomInputField from './ui/CustomInputField'
 import { X } from 'lucide-react'
-import { courseForm } from '@/lib/formTypes'
+import { courseForm } from '@/lib/constants/formTypes'
 
 const CustomCourseForm = () => {
   const [isOpened, setIsOpened] = useState(true)

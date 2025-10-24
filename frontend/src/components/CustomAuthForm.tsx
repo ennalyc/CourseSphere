@@ -1,7 +1,7 @@
 'use client'
 import React from 'react'
 import { useState } from "react";
-import { authForm } from "@/lib/formTypes";
+import { authForm } from "@/lib/constants/formTypes";
 import CustomForm from "@/components/CustomForm";
 import { useActionState } from 'react'
 import { signup } from '@/actions/auth'
